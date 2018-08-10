@@ -35,11 +35,17 @@
                                 <rect key="frame" x="100" y="527" width="175" height="40"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
                                 <state key="normal" title="Almacenar posición"/>
+                                <connections>
+                                    <action selector="sendPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="xu4-CY-Scj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYh-qh-OiQ">
                                 <rect key="frame" x="85" y="450" width="205" height="47"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                 <state key="normal" title="Obtener posición"/>
+                                <connections>
+                                    <action selector="getPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="H2Y-0k-hMu"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tjR-PQ-R0b">
                                 <rect key="frame" x="89.5" y="141" width="196" height="27.5"/>
@@ -104,6 +110,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="dispositivo" destination="2b9-ea-F5o" id="eAw-kS-1bq"/>
+                        <outlet property="latitud" destination="Vdm-NR-cwh" id="nBh-bv-tqK"/>
+                        <outlet property="longitud" destination="GpZ-d0-Gx0" id="pPK-bX-SXN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
