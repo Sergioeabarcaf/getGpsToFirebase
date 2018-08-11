@@ -21,7 +21,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var userHeading = 0.0
     
     
-    
     override func viewDidLoad() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
