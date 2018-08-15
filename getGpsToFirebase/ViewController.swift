@@ -9,22 +9,24 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var longitud: UILabel!
     @IBOutlet weak var latitud: UILabel!
-    @IBOutlet weak var dispositivo: UITextField!
+    @IBOutlet weak var dispositivoNombre: UITextField!
+    @IBOutlet weak var dispositivoTitulo: UILabel!
     
     let locationManager = CLLocationManager()
     var userLocation = CLLocation()
     var headingStep = 0
     var userHeading = 0.0
     
-    
     override func viewDidLoad() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
+        
+        dispositivoNombre.delegate = self
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -61,11 +63,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    //MARK: Text Fiel Delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.dispositivoTitulo.text = self.dispositivoNombre.text
+    }
+    
     //MARK: Funciones propias de la APP
     @IBAction func getPosition() {
         self.longitud.text = String(self.userLocation.coordinate.longitude)
         self.latitud.text = String(self.userLocation.coordinate.latitude)
-        print(self.dispositivo.text ?? "Default")
+        print(self.dispositivoNombre.text ?? "Default")
     }
     
     @IBAction func sendPosition() {

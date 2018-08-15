@@ -19,36 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posicion Actual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5T-Yy-at8">
-                                <rect key="frame" x="79" y="80" width="216" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posicion Actual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5T-Yy-at8">
+                                <rect key="frame" x="26" y="70" width="323" height="41"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa nombre dispositivo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2b9-ea-F5o">
-                                <rect key="frame" x="10" y="356" width="355" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-eL-3Jr">
-                                <rect key="frame" x="100" y="527" width="175" height="40"/>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
-                                <state key="normal" title="Almacenar posición"/>
-                                <connections>
-                                    <action selector="sendPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="xu4-CY-Scj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYh-qh-OiQ">
-                                <rect key="frame" x="85" y="450" width="205" height="47"/>
-                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
-                                <state key="normal" title="Obtener posición"/>
-                                <connections>
-                                    <action selector="getPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="H2Y-0k-hMu"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tjR-PQ-R0b">
-                                <rect key="frame" x="89.5" y="141" width="196" height="27.5"/>
+                                <rect key="frame" x="89.5" y="121" width="196" height="27.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitud:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Eb-Om-xrJ">
                                         <rect key="frame" x="0.0" y="0.0" width="85.5" height="27.5"/>
@@ -64,14 +42,8 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nuevo dispositivo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-tu-A60">
-                                <rect key="frame" x="117" y="322.5" width="141.5" height="23.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-Qe-VZX">
-                                <rect key="frame" x="95" y="178.5" width="184" height="27.5"/>
+                                <rect key="frame" x="95.5" y="158" width="184" height="27.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitud:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrK-cF-aFS">
                                         <rect key="frame" x="0.0" y="0.0" width="67.5" height="27.5"/>
@@ -87,31 +59,77 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYh-qh-OiQ">
+                                <rect key="frame" x="85" y="195.5" width="205" height="47"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
+                                <state key="normal" title="Obtener posición"/>
+                                <connections>
+                                    <action selector="getPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="H2Y-0k-hMu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-eL-3Jr">
+                                <rect key="frame" x="100" y="577" width="175" height="40"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
+                                <state key="normal" title="Almacenar posición"/>
+                                <connections>
+                                    <action selector="sendPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="xu4-CY-Scj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nuevo dispositivo:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-tu-A60">
+                                <rect key="frame" x="10.5" y="503" width="354.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa nombre dispositivo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2b9-ea-F5o">
+                                <rect key="frame" x="10" y="537" width="355" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleccione un dispositivo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY8-hk-bCM">
+                                <rect key="frame" x="10" y="307.5" width="355" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XkQ-Lj-pvC">
+                                <rect key="frame" x="28" y="338" width="320" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="kDp-7A-iqh"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="g5T-Yy-at8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="60" id="2NA-VF-bmA"/>
+                            <constraint firstItem="XkQ-Lj-pvC" firstAttribute="top" secondItem="uY8-hk-bCM" secondAttribute="bottom" constant="10" id="093-5I-md3"/>
+                            <constraint firstItem="Wsz-eL-3Jr" firstAttribute="top" secondItem="2b9-ea-F5o" secondAttribute="bottom" constant="10" id="0Cx-VC-YR3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xfk-tu-A60" secondAttribute="trailing" constant="10" id="1gS-cd-C3l"/>
+                            <constraint firstItem="g5T-Yy-at8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="50" id="2NA-VF-bmA"/>
                             <constraint firstItem="nDE-Qe-VZX" firstAttribute="top" secondItem="7Eb-Om-xrJ" secondAttribute="bottom" constant="10" id="8HY-4o-Pn7"/>
+                            <constraint firstItem="Xfk-tu-A60" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="9c1-6q-Oz0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2b9-ea-F5o" secondAttribute="trailing" constant="10" id="Bhd-6d-KRs"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Wsz-eL-3Jr" secondAttribute="bottom" constant="100" id="CO9-Pq-VGc"/>
-                            <constraint firstItem="Xfk-tu-A60" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D0c-VB-lXN"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Wsz-eL-3Jr" secondAttribute="bottom" constant="50" id="CO9-Pq-VGc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uY8-hk-bCM" secondAttribute="trailing" constant="10" id="G5v-Nh-S3F"/>
                             <constraint firstItem="2b9-ea-F5o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="GBU-AE-rtB"/>
-                            <constraint firstItem="Wsz-eL-3Jr" firstAttribute="top" secondItem="BYh-qh-OiQ" secondAttribute="bottom" constant="30" id="MUt-ma-gp7"/>
-                            <constraint firstItem="Xfk-tu-A60" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Oty-CT-5ze"/>
+                            <constraint firstItem="Xfk-tu-A60" firstAttribute="top" secondItem="XkQ-Lj-pvC" secondAttribute="bottom" constant="15" id="OcU-qe-P33"/>
                             <constraint firstItem="2b9-ea-F5o" firstAttribute="top" secondItem="Xfk-tu-A60" secondAttribute="bottom" constant="10" id="Y9t-S2-3ms"/>
-                            <constraint firstItem="tjR-PQ-R0b" firstAttribute="top" secondItem="g5T-Yy-at8" secondAttribute="bottom" constant="20" id="aoX-93-fNq"/>
+                            <constraint firstItem="tjR-PQ-R0b" firstAttribute="top" secondItem="g5T-Yy-at8" secondAttribute="bottom" constant="10" id="aoX-93-fNq"/>
+                            <constraint firstItem="XkQ-Lj-pvC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dWF-f6-Yg6"/>
                             <constraint firstItem="Wsz-eL-3Jr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dg8-La-daF"/>
+                            <constraint firstItem="uY8-hk-bCM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="elT-f4-nCa"/>
                             <constraint firstItem="BYh-qh-OiQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hjj-Tt-obl"/>
-                            <constraint firstItem="g5T-Yy-at8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j2u-pK-PdP"/>
+                            <constraint firstItem="BYh-qh-OiQ" firstAttribute="top" secondItem="nDE-Qe-VZX" secondAttribute="bottom" constant="10" id="mIT-co-Oph"/>
                             <constraint firstItem="tjR-PQ-R0b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mPT-ca-HVQ"/>
                             <constraint firstItem="nDE-Qe-VZX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o4e-GX-Kht"/>
-                            <constraint firstItem="g5T-Yy-at8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="o7p-t3-Uow"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="g5T-Yy-at8" secondAttribute="trailing" constant="10" id="zK3-Xw-Tzk"/>
+                            <constraint firstItem="g5T-Yy-at8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="o7p-t3-Uow"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g5T-Yy-at8" secondAttribute="trailing" constant="10" id="zK3-Xw-Tzk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="dispositivo" destination="2b9-ea-F5o" id="eAw-kS-1bq"/>
+                        <outlet property="dispositivoNombre" destination="2b9-ea-F5o" id="GbM-wh-UhS"/>
+                        <outlet property="dispositivoTitulo" destination="Xfk-tu-A60" id="Cyz-Fq-cNd"/>
                         <outlet property="latitud" destination="Vdm-NR-cwh" id="nBh-bv-tqK"/>
                         <outlet property="longitud" destination="GpZ-d0-Gx0" id="pPK-bX-SXN"/>
                     </connections>
