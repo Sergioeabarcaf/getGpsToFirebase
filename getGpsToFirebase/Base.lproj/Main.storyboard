@@ -64,7 +64,7 @@
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                 <state key="normal" title="Obtener posición"/>
                                 <connections>
-                                    <action selector="getPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="H2Y-0k-hMu"/>
+                                    <action selector="getPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="nte-3o-99t"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-eL-3Jr">

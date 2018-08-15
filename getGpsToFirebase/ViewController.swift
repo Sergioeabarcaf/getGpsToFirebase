@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import FirebaseDatabase
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
 
@@ -21,12 +22,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     var headingStep = 0
     var userHeading = 0.0
     
+    var ref: DatabaseReference!
+    var handle: DatabaseHandle!
+    var dispositivoSend:[NSObject] = []
+    
+    
     override func viewDidLoad() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         
         dispositivoNombre.delegate = self
+        
+        ref = Database.database().reference()
+        handle = ref?.child("dispositivos").observe(.childAdded, with: { (snapshot) in
+            if let item = snapshot.value {
+                self.dispositivoSend.append(item as! NSObject)
+                self.ref?.keepSynced(true)
+            }
+        })
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -78,6 +92,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         self.longitud.text = String(self.userLocation.coordinate.longitude)
         self.latitud.text = String(self.userLocation.coordinate.latitude)
         print(self.dispositivoNombre.text ?? "Default")
+        for item in self.dispositivoSend{
+            print(item.value(forKey: "nombre") ?? Error.self)
+        }
     }
     
     @IBAction func sendPosition() {
