@@ -24,7 +24,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     var ref: DatabaseReference!
     var handle: DatabaseHandle!
-    var dispositivosFromFirebase:[NSObject] = []
+    var dispositivosFromFirebase:[NSDictionary] = []
     
     
     override func viewDidLoad() {
@@ -35,12 +35,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         nombreTextfield.delegate = self
         
         ref = Database.database().reference()
-        handle = ref?.child("dispositivos").observe(.childAdded, with: { (snapshot) in
+        handle = ref?.child("locaciones").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value {
-                self.dispositivosFromFirebase.append(item as! NSObject)
+                self.dispositivosFromFirebase.append(item as! NSDictionary)
                 self.ref?.keepSynced(true)
             }
         })
+        
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -96,14 +97,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     @IBAction func sendPosition() {
         if self.nombreTextfield.text != nil {
             for item in dispositivosFromFirebase {
-                let nombreDispositivo = item.value(forKey: "nombre") as! String
-                if nombreDispositivo == self.nombreTextfield.text {
-                    print(item)
-                }
+                print(item)
             }
-        }
-        else {
-            print("no se ha ingresado un dispositivo")
         }
     }
 
