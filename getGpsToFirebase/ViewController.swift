@@ -12,10 +12,10 @@ import FirebaseDatabase
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var longitud: UILabel!
-    @IBOutlet weak var latitud: UILabel!
-    @IBOutlet weak var dispositivoNombre: UITextField!
-    @IBOutlet weak var dispositivoTitulo: UILabel!
+    @IBOutlet weak var actualLongitud: UILabel!
+    @IBOutlet weak var actualLatitud: UILabel!
+    @IBOutlet weak var nombreTextfield: UITextField!
+    @IBOutlet weak var nombreTitulo: UILabel!
     
     let locationManager = CLLocationManager()
     var userLocation = CLLocation()
@@ -24,7 +24,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     var ref: DatabaseReference!
     var handle: DatabaseHandle!
-    var dispositivoSend:[NSObject] = []
+    var dispositivosFromFirebase:[NSObject] = []
     
     
     override func viewDidLoad() {
@@ -32,12 +32,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         
-        dispositivoNombre.delegate = self
+        nombreTextfield.delegate = self
         
         ref = Database.database().reference()
         handle = ref?.child("dispositivos").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value {
-                self.dispositivoSend.append(item as! NSObject)
+                self.dispositivosFromFirebase.append(item as! NSObject)
                 self.ref?.keepSynced(true)
             }
         })
@@ -84,20 +84,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.dispositivoTitulo.text = self.dispositivoNombre.text
+        self.nombreTitulo.text = self.nombreTextfield.text
     }
     
     //MARK: Funciones propias de la APP
     @IBAction func getPosition() {
-        self.longitud.text = String(self.userLocation.coordinate.longitude)
-        self.latitud.text = String(self.userLocation.coordinate.latitude)
-        print(self.dispositivoNombre.text ?? "Default")
-        for item in self.dispositivoSend{
-            print(item.value(forKey: "nombre") ?? Error.self)
-        }
+        self.actualLongitud.text = String(self.userLocation.coordinate.longitude)
+        self.actualLatitud.text = String(self.userLocation.coordinate.latitude)
     }
     
     @IBAction func sendPosition() {
+        if self.nombreTextfield.text != nil {
+            for item in dispositivosFromFirebase {
+                let nombreDispositivo = item.value(forKey: "nombre") as! String
+                if nombreDispositivo == self.nombreTextfield.text {
+                    print(item)
+                }
+            }
+        }
+        else {
+            print("no se ha ingresado un dispositivo")
+        }
     }
 
 
