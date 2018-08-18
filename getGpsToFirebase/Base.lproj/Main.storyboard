@@ -68,21 +68,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-eL-3Jr">
-                                <rect key="frame" x="100" y="577" width="175" height="40"/>
+                                <rect key="frame" x="100" y="341" width="175" height="40"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
                                 <state key="normal" title="Almacenar posición"/>
                                 <connections>
                                     <action selector="sendPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="xu4-CY-Scj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nuevo dispositivo:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-tu-A60">
-                                <rect key="frame" x="10.5" y="503" width="354.5" height="23.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nuevo dispositivo:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-tu-A60">
+                                <rect key="frame" x="11" y="262" width="354.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa nombre dispositivo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2b9-ea-F5o">
-                                <rect key="frame" x="10" y="537" width="355" height="30"/>
+                                <rect key="frame" x="10" y="301" width="355" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -90,14 +90,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Wsz-eL-3Jr" firstAttribute="top" secondItem="2b9-ea-F5o" secondAttribute="bottom" constant="10" id="0Cx-VC-YR3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xfk-tu-A60" secondAttribute="trailing" constant="10" id="1gS-cd-C3l"/>
                             <constraint firstItem="g5T-Yy-at8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="50" id="2NA-VF-bmA"/>
                             <constraint firstItem="nDE-Qe-VZX" firstAttribute="top" secondItem="7Eb-Om-xrJ" secondAttribute="bottom" constant="10" id="8HY-4o-Pn7"/>
                             <constraint firstItem="Xfk-tu-A60" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="9c1-6q-Oz0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2b9-ea-F5o" secondAttribute="trailing" constant="10" id="Bhd-6d-KRs"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Wsz-eL-3Jr" secondAttribute="bottom" constant="50" id="CO9-Pq-VGc"/>
                             <constraint firstItem="2b9-ea-F5o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="GBU-AE-rtB"/>
+                            <constraint firstItem="Xfk-tu-A60" firstAttribute="top" secondItem="BYh-qh-OiQ" secondAttribute="bottom" constant="25" id="XTr-gd-5Lf"/>
                             <constraint firstItem="2b9-ea-F5o" firstAttribute="top" secondItem="Xfk-tu-A60" secondAttribute="bottom" constant="10" id="Y9t-S2-3ms"/>
                             <constraint firstItem="tjR-PQ-R0b" firstAttribute="top" secondItem="g5T-Yy-at8" secondAttribute="bottom" constant="10" id="aoX-93-fNq"/>
                             <constraint firstItem="Wsz-eL-3Jr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dg8-La-daF"/>
@@ -106,6 +105,7 @@
                             <constraint firstItem="tjR-PQ-R0b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mPT-ca-HVQ"/>
                             <constraint firstItem="nDE-Qe-VZX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o4e-GX-Kht"/>
                             <constraint firstItem="g5T-Yy-at8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="o7p-t3-Uow"/>
+                            <constraint firstItem="Wsz-eL-3Jr" firstAttribute="top" secondItem="2b9-ea-F5o" secondAttribute="bottom" constant="10" id="yw2-Ba-SVQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g5T-Yy-at8" secondAttribute="trailing" constant="10" id="zK3-Xw-Tzk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

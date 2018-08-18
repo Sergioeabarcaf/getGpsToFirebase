@@ -24,7 +24,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     var ref: DatabaseReference!
     var handle: DatabaseHandle!
-    var dispositivosFromFirebase:[NSDictionary] = []
+    var dispositivosFromFirebase:[Any] = []
     var dispositivoLocation:[String:Any] = [
         "lat":"",
         "lon":""
@@ -39,7 +39,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         nombreTextfield.delegate = self
         
         ref = Database.database().reference()
-        handle = ref?.child("locaciones").observe(.childAdded, with: { (snapshot) in
+        handle = ref?.child("locaciones").observe(.value, with: { (snapshot) in
             if let item = snapshot.value {
                 self.dispositivosFromFirebase.append(item as! NSDictionary)
                 self.ref?.keepSynced(true)
@@ -98,11 +98,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         self.actualLatitud.text = String(self.userLocation.coordinate.latitude)
         self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "lat")
         self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "lon")
+       
+        print(self.dispositivosFromFirebase)
     }
     
     @IBAction func sendPosition() {
         if self.nombreTextfield.text != nil {
-            self.ref.child("location").child(self.nombreTextfield.text!).setValue(self.dispositivoLocation)
+            self.ref.child("locaciones").child(self.nombreTextfield.text!).setValue(self.dispositivoLocation)
         }
     }
 
