@@ -29,14 +29,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     var handle: DatabaseHandle!
     var dispositivosFromFirebase:[Any] = []
     var dispositivoLocation:[String:Any] = [
-        "lat":"",
-        "lon":""
+        "latitude":"",
+        "longitude":"",
+        "horizontalAccurancy": "",
+        "verticalAccurancy":""
     ]
     
     
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
-        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
         
         nombreTextfield.delegate = self
         
@@ -75,14 +79,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        DispatchQueue.main.async {
-            self.headingStep += 1
-            print(self.headingStep)
-            if self.headingStep < 5 { return }
 
-            self.userHeading = newHeading.magneticHeading
-            self.locationManager.stopUpdatingHeading()
-        }
     }
     
     //MARK: Text Fiel Delegate
@@ -97,30 +94,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     //MARK: Funciones propias de la APP
     @IBAction func getPosition() {
-        
         self.loadPosition.startAnimating()
-        self.loadPosition.hidesWhenStopped = true
         
-        
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
-        
-        while self.userLocation.coordinate.latitude == 0.0 {
-            locationManager.startUpdatingLocation()
-            print(self.userLocation.coordinate.latitude)
-            locationManager.stopUpdatingLocation()
-        }
-        
+        //Update de etiquetas
         self.horizontalAccurancy.text = String(self.userLocation.horizontalAccuracy)
         self.verticalAccurancy.text = String(self.userLocation.verticalAccuracy)
         self.actualLongitud.text = String(self.userLocation.coordinate.longitude)
         self.actualLatitud.text = String(self.userLocation.coordinate.latitude)
-        self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "lat")
-        self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "lon")
+        
+        //Update de valores para el JSON a enviar a Firebase
+        self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "latitude")
+        self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "longitude")
+        self.dispositivoLocation.updateValue(self.horizontalAccurancy.text!, forKey: "horizontalAccurancy")
+        self.dispositivoLocation.updateValue(self.verticalAccurancy.text!, forKey: "verticalAccurancy")
         
         self.loadPosition.stopAnimating()
-
     }
     
     @IBAction func sendPosition() {
