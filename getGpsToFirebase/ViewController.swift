@@ -16,6 +16,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     @IBOutlet weak var actualLatitud: UILabel!
     @IBOutlet weak var nombreTextfield: UITextField!
     @IBOutlet weak var nombreTitulo: UILabel!
+    @IBOutlet weak var horizontalAccurancy: UILabel!
+    @IBOutlet weak var verticalAccurancy: UILabel!
+    @IBOutlet weak var loadPosition: UIActivityIndicatorView!
     
     let locationManager = CLLocationManager()
     var userLocation = CLLocation()
@@ -32,9 +35,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     
     override func viewDidLoad() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
+        
         
         nombreTextfield.delegate = self
         
@@ -59,6 +61,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     //MARK: CoreLocation
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
         print(error.localizedDescription)
     }
     
@@ -76,7 +79,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
             self.headingStep += 1
             print(self.headingStep)
             if self.headingStep < 5 { return }
-            
+
             self.userHeading = newHeading.magneticHeading
             self.locationManager.stopUpdatingHeading()
         }
@@ -94,12 +97,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     //MARK: Funciones propias de la APP
     @IBAction func getPosition() {
+        
+        self.loadPosition.startAnimating()
+        self.loadPosition.hidesWhenStopped = true
+        
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        
+        while self.userLocation.coordinate.latitude == 0.0 {
+            locationManager.startUpdatingLocation()
+            print(self.userLocation.coordinate.latitude)
+            locationManager.stopUpdatingLocation()
+        }
+        
+        self.horizontalAccurancy.text = String(self.userLocation.horizontalAccuracy)
+        self.verticalAccurancy.text = String(self.userLocation.verticalAccuracy)
         self.actualLongitud.text = String(self.userLocation.coordinate.longitude)
         self.actualLatitud.text = String(self.userLocation.coordinate.latitude)
         self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "lat")
         self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "lon")
-       
-        print(self.dispositivosFromFirebase)
+        
+        self.loadPosition.stopAnimating()
+
     }
     
     @IBAction func sendPosition() {
