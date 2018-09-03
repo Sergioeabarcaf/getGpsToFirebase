@@ -52,6 +52,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
             }
         })
         
+        self.loadPosition.activityIndicatorViewStyle = .whiteLarge
+        self.loadPosition.isHidden = true
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -93,14 +95,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     }
     
     //MARK: Funciones propias de la APP
-    @IBAction func getPosition() {
+    @IBAction func getPosition(_ sender: UIButton) {
+        sender.isHidden = true
+        self.loadPosition.isHidden = false
         self.loadPosition.startAnimating()
         
+        var aux = CLLocation()
+        
+        for i in 1...10 {
+            print(i)
+            if i == 1{
+                aux = self.userLocation
+                sleep(1)
+            }
+            if self.userLocation.horizontalAccuracy < aux.horizontalAccuracy {
+                aux = self.userLocation
+                print("menor horizontal \(i)")
+            }
+            sleep(5)
+        }
+        
         //Update de etiquetas
-        self.horizontalAccurancy.text = String(self.userLocation.horizontalAccuracy)
-        self.verticalAccurancy.text = String(self.userLocation.verticalAccuracy)
-        self.actualLongitud.text = String(self.userLocation.coordinate.longitude)
-        self.actualLatitud.text = String(self.userLocation.coordinate.latitude)
+        self.horizontalAccurancy.text = String(aux.horizontalAccuracy)
+        self.verticalAccurancy.text = String(aux.verticalAccuracy)
+        self.actualLongitud.text = String(aux.coordinate.longitude)
+        self.actualLatitud.text = String(aux.coordinate.latitude)
         
         //Update de valores para el JSON a enviar a Firebase
         self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "latitude")
@@ -108,7 +127,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         self.dispositivoLocation.updateValue(self.horizontalAccurancy.text!, forKey: "horizontalAccurancy")
         self.dispositivoLocation.updateValue(self.verticalAccurancy.text!, forKey: "verticalAccurancy")
         
-        self.loadPosition.stopAnimating()
+        self.loadPosition.isHidden = true
+        sender.isHidden = false
     }
     
     @IBAction func sendPosition() {

@@ -116,15 +116,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OhO-L6-rcY">
                                 <rect key="frame" x="70" y="210.5" width="235" height="20"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYh-qh-OiQ">
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="getPositionLabel" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYh-qh-OiQ">
                                         <rect key="frame" x="0.0" y="0.0" width="205" height="20"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                         <state key="normal" title="Obtener posición"/>
                                         <connections>
-                                            <action selector="getPosition" destination="BYZ-38-t0r" eventType="touchUpInside" id="nte-3o-99t"/>
+                                            <action selector="getPosition:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wIh-25-QGc"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-WV-ttP">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-WV-ttP">
                                         <rect key="frame" x="215" y="0.0" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
