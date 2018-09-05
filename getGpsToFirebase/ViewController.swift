@@ -19,10 +19,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     @IBOutlet weak var horizontalAccurancy: UILabel!
     @IBOutlet weak var verticalAccurancy: UILabel!
     @IBOutlet weak var loadPosition: UIActivityIndicatorView!
+    @IBOutlet weak var statusLabel: UILabel!
     
     let locationManager = CLLocationManager()
     var userLocation = CLLocation()
-    var headingStep = 0
+    var bestUserLocation = CLLocation()
+    var countGetsPosition = 0
     var userHeading = 0.0
     
     var ref: DatabaseReference!
@@ -92,40 +94,46 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.nombreTitulo.text = self.nombreTextfield.text
+        textField.resignFirstResponder()
     }
+    
+    
     
     //MARK: Funciones propias de la APP
     @IBAction func getPosition(_ sender: UIButton) {
+        self.countGetsPosition += 1
         sender.isHidden = true
         self.loadPosition.isHidden = false
         self.loadPosition.startAnimating()
+
         
-        var aux = CLLocation()
-        
-        for i in 1...10 {
-            print(i)
-            if i == 1{
-                aux = self.userLocation
-                sleep(1)
-            }
-            if self.userLocation.horizontalAccuracy < aux.horizontalAccuracy {
-                aux = self.userLocation
-                print("menor horizontal \(i)")
-            }
-            sleep(5)
+        if self.bestUserLocation.horizontalAccuracy == 0.0 {
+            self.bestUserLocation = self.userLocation
+            self.statusLabel.text = "Primera medición, intento: \(self.countGetsPosition)"
+            self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
         }
         
-        //Update de etiquetas
-        self.horizontalAccurancy.text = String(aux.horizontalAccuracy)
-        self.verticalAccurancy.text = String(aux.verticalAccuracy)
-        self.actualLongitud.text = String(aux.coordinate.longitude)
-        self.actualLatitud.text = String(aux.coordinate.latitude)
+        else if self.bestUserLocation.horizontalAccuracy > self.userLocation.horizontalAccuracy {
+            self.bestUserLocation = self.userLocation
+            self.statusLabel.text = "Mayor presición, intento: \(self.countGetsPosition)"
+            
+            //Update de etiquetas
+            self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
+            self.verticalAccurancy.text = String(self.bestUserLocation.verticalAccuracy)
+            self.actualLongitud.text = String(self.bestUserLocation.coordinate.longitude)
+            self.actualLatitud.text = String(self.bestUserLocation.coordinate.latitude)
+            
+            //Update de valores para el JSON a enviar a Firebase
+            self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "latitude")
+            self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "longitude")
+            self.dispositivoLocation.updateValue(self.horizontalAccurancy.text!, forKey: "horizontalAccurancy")
+            self.dispositivoLocation.updateValue(self.verticalAccurancy.text!, forKey: "verticalAccurancy")
+        }
         
-        //Update de valores para el JSON a enviar a Firebase
-        self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "latitude")
-        self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "longitude")
-        self.dispositivoLocation.updateValue(self.horizontalAccurancy.text!, forKey: "horizontalAccurancy")
-        self.dispositivoLocation.updateValue(self.verticalAccurancy.text!, forKey: "verticalAccurancy")
+        else{
+            self.statusLabel.text = "Menor presición, intento: \(self.countGetsPosition)"
+            self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
+        }
         
         self.loadPosition.isHidden = true
         sender.isHidden = false

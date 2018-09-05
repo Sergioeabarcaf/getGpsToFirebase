@@ -132,6 +132,23 @@
                                     <constraint firstAttribute="height" constant="20" id="NfF-0c-4Oo"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aDH-2K-4xO">
+                                <rect key="frame" x="10" y="558.5" width="60" height="19.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estado:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11e-fb-mk2">
+                                        <rect key="frame" x="0.0" y="0.0" width="47" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHH-TL-mkl">
+                                        <rect key="frame" x="52" y="0.0" width="8" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -148,11 +165,13 @@
                             <constraint firstItem="tjR-PQ-R0b" firstAttribute="top" secondItem="g5T-Yy-at8" secondAttribute="bottom" constant="10" id="aoX-93-fNq"/>
                             <constraint firstItem="Wsz-eL-3Jr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dg8-La-daF"/>
                             <constraint firstItem="Xfk-tu-A60" firstAttribute="top" secondItem="OhO-L6-rcY" secondAttribute="bottom" constant="35" id="eGb-n5-qfT"/>
+                            <constraint firstItem="oZO-Zx-him" firstAttribute="top" secondItem="aDH-2K-4xO" secondAttribute="bottom" constant="10" id="ePa-bN-3WV"/>
                             <constraint firstItem="OhO-L6-rcY" firstAttribute="top" secondItem="nDE-Qe-VZX" secondAttribute="bottom" constant="25" id="hkH-Ah-L4t"/>
                             <constraint firstAttribute="bottomMargin" secondItem="xQj-Xw-Zc0" secondAttribute="bottom" constant="30" id="ifD-mi-o7F"/>
                             <constraint firstItem="tjR-PQ-R0b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mPT-ca-HVQ"/>
                             <constraint firstItem="nDE-Qe-VZX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o4e-GX-Kht"/>
                             <constraint firstItem="g5T-Yy-at8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="o7p-t3-Uow"/>
+                            <constraint firstItem="aDH-2K-4xO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="r4s-1M-wmt"/>
                             <constraint firstItem="Wsz-eL-3Jr" firstAttribute="top" secondItem="2b9-ea-F5o" secondAttribute="bottom" constant="10" id="yw2-Ba-SVQ"/>
                             <constraint firstItem="xQj-Xw-Zc0" firstAttribute="top" secondItem="oZO-Zx-him" secondAttribute="bottom" constant="10" id="zC4-s1-7Ae"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g5T-Yy-at8" secondAttribute="trailing" constant="10" id="zK3-Xw-Tzk"/>
@@ -166,6 +185,7 @@
                         <outlet property="loadPosition" destination="0Og-WV-ttP" id="ait-k2-KvS"/>
                         <outlet property="nombreTextfield" destination="2b9-ea-F5o" id="7dM-Cf-ywo"/>
                         <outlet property="nombreTitulo" destination="Xfk-tu-A60" id="8u1-fO-GiO"/>
+                        <outlet property="statusLabel" destination="oHH-TL-mkl" id="wxP-0p-58H"/>
                         <outlet property="verticalAccurancy" destination="auT-bi-lRw" id="daC-6t-CBq"/>
                     </connections>
                 </viewController>
