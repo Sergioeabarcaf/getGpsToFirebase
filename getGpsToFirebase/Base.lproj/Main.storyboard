@@ -114,19 +114,17 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OhO-L6-rcY">
-                                <rect key="frame" x="70" y="210.5" width="235" height="20"/>
+                                <rect key="frame" x="75" y="210.5" width="225" height="20"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="getPositionLabel" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYh-qh-OiQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="205" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="20"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Obtener posición"/>
                                         <connections>
                                             <action selector="getPosition:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wIh-25-QGc"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-WV-ttP">
-                                        <rect key="frame" x="215" y="0.0" width="20" height="20"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="NfF-0c-4Oo"/>
@@ -182,7 +180,6 @@
                         <outlet property="actualLatitud" destination="Vdm-NR-cwh" id="dvr-LH-2va"/>
                         <outlet property="actualLongitud" destination="GpZ-d0-Gx0" id="UqL-Cs-JtA"/>
                         <outlet property="horizontalAccurancy" destination="VXn-nw-ief" id="FK0-JM-ccs"/>
-                        <outlet property="loadPosition" destination="0Og-WV-ttP" id="ait-k2-KvS"/>
                         <outlet property="nombreTextfield" destination="2b9-ea-F5o" id="7dM-Cf-ywo"/>
                         <outlet property="nombreTitulo" destination="Xfk-tu-A60" id="8u1-fO-GiO"/>
                         <outlet property="statusLabel" destination="oHH-TL-mkl" id="wxP-0p-58H"/>

@@ -18,7 +18,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     @IBOutlet weak var nombreTitulo: UILabel!
     @IBOutlet weak var horizontalAccurancy: UILabel!
     @IBOutlet weak var verticalAccurancy: UILabel!
-    @IBOutlet weak var loadPosition: UIActivityIndicatorView!
     @IBOutlet weak var statusLabel: UILabel!
     
     let locationManager = CLLocationManager()
@@ -34,9 +33,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         "latitude":"",
         "longitude":"",
         "horizontalAccurancy": "",
-        "verticalAccurancy":""
+        "verticalAccurancy":"",
+        "nameDevice" : ""
     ]
-    
     
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
@@ -47,15 +46,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         nombreTextfield.delegate = self
         
         ref = Database.database().reference()
-        handle = ref?.child("locaciones").observe(.value, with: { (snapshot) in
+        handle = ref?.child("locaciones").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value {
                 self.dispositivosFromFirebase.append(item as! NSDictionary)
                 self.ref?.keepSynced(true)
             }
         })
-        
-        self.loadPosition.activityIndicatorViewStyle = .whiteLarge
-        self.loadPosition.isHidden = true
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -103,8 +99,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     @IBAction func getPosition(_ sender: UIButton) {
         self.countGetsPosition += 1
         sender.isHidden = true
-        self.loadPosition.isHidden = false
-        self.loadPosition.startAnimating()
+        
+        for i in 0...(self.dispositivosFromFirebase.count - 1){
+            print((self.dispositivosFromFirebase[i] as AnyObject)["latitude"])
+        }
 
         
         if self.bestUserLocation.horizontalAccuracy == 0.0 {
@@ -135,13 +133,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
             self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
         }
         
-        self.loadPosition.isHidden = true
         sender.isHidden = false
     }
     
     @IBAction func sendPosition() {
         if self.nombreTextfield.text != nil {
-            self.ref.child("locaciones").child(self.nombreTextfield.text!).setValue(self.dispositivoLocation)
+            self.dispositivoLocation.updateValue(self.nombreTextfield.text!, forKey: "nameDevice")
+            self.ref.child("locaciones").childByAutoId().setValue(self.dispositivoLocation)
         }
     }
 
