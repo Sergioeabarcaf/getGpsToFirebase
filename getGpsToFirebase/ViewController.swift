@@ -107,30 +107,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         
         if self.bestUserLocation.horizontalAccuracy == 0.0 {
             self.bestUserLocation = self.userLocation
+            self.statusLabel.backgroundColor = UIColor.yellow
             self.statusLabel.text = "Primera medición, intento: \(self.countGetsPosition)"
-            self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
+            self.updateLabels()
         }
         
         else if self.bestUserLocation.horizontalAccuracy > self.userLocation.horizontalAccuracy {
             self.bestUserLocation = self.userLocation
+            self.statusLabel.backgroundColor = UIColor.green
             self.statusLabel.text = "Mayor presición, intento: \(self.countGetsPosition)"
-            
-            //Update de etiquetas
-            self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
-            self.verticalAccurancy.text = String(self.bestUserLocation.verticalAccuracy)
-            self.actualLongitud.text = String(self.bestUserLocation.coordinate.longitude)
-            self.actualLatitud.text = String(self.bestUserLocation.coordinate.latitude)
-            
-            //Update de valores para el JSON a enviar a Firebase
-            self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "latitude")
-            self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "longitude")
-            self.dispositivoLocation.updateValue(self.horizontalAccurancy.text!, forKey: "horizontalAccurancy")
-            self.dispositivoLocation.updateValue(self.verticalAccurancy.text!, forKey: "verticalAccurancy")
+            self.updateLabels()
         }
         
         else{
+            self.statusLabel.backgroundColor = UIColor.red
             self.statusLabel.text = "Menor presición, intento: \(self.countGetsPosition)"
-            self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
         }
         
         sender.isHidden = false
@@ -141,6 +132,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
             self.dispositivoLocation.updateValue(self.nombreTextfield.text!, forKey: "nameDevice")
             self.ref.child("locaciones").childByAutoId().setValue(self.dispositivoLocation)
         }
+    }
+    
+    func updateLabels(){
+        //Update de etiquetas
+        self.horizontalAccurancy.text = String(self.bestUserLocation.horizontalAccuracy)
+        self.verticalAccurancy.text = String(self.bestUserLocation.verticalAccuracy)
+        self.actualLongitud.text = String(self.bestUserLocation.coordinate.longitude)
+        self.actualLatitud.text = String(self.bestUserLocation.coordinate.latitude)
+        
+        //Update de valores para el JSON a enviar a Firebase
+        self.dispositivoLocation.updateValue(self.actualLatitud.text!, forKey: "latitude")
+        self.dispositivoLocation.updateValue(self.actualLongitud.text!, forKey: "longitude")
+        self.dispositivoLocation.updateValue(self.horizontalAccurancy.text!, forKey: "horizontalAccurancy")
+        self.dispositivoLocation.updateValue(self.verticalAccurancy.text!, forKey: "verticalAccurancy")
     }
 
 
