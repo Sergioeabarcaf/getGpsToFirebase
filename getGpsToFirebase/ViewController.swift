@@ -37,6 +37,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         "nameDevice" : ""
     ]
     
+    struct deviceData: Codable {
+        var latitude: String
+        var longitude: String
+        var horizontalAccurancy: String
+        var verticalAccurancy: String
+        var nameDevice: String
+    }
+    
+    struct deviceLocation: Codable {
+        var key: deviceData
+    }
+    
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -45,10 +57,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         
         nombreTextfield.delegate = self
         
+        Database.database().isPersistenceEnabled = true
         ref = Database.database().reference()
-        handle = ref?.child("locaciones").observe(.childAdded, with: { (snapshot) in
+        handle = ref?.child("locaciones").observe(.value, with: { (snapshot) in
             if let item = snapshot.value {
-                self.dispositivosFromFirebase.append(item as! NSDictionary)
+                self.dispositivosFromFirebase.append(item)
                 self.ref?.keepSynced(true)
             }
         })
@@ -63,7 +76,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     }
     
     //MARK: CoreLocation
-    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
         print(error.localizedDescription)
@@ -98,12 +110,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     //MARK: Funciones propias de la APP
     @IBAction func getPosition(_ sender: UIButton) {
         self.countGetsPosition += 1
-        sender.isHidden = true
         
-        for i in 0...(self.dispositivosFromFirebase.count - 1){
-            print((self.dispositivosFromFirebase[i] as AnyObject)["latitude"])
-        }
-
+        print(self.dispositivosFromFirebase.count)
         
         if self.bestUserLocation.horizontalAccuracy == 0.0 {
             self.bestUserLocation = self.userLocation
@@ -123,8 +131,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
             self.statusLabel.backgroundColor = UIColor.red
             self.statusLabel.text = "Menor presición, intento: \(self.countGetsPosition)"
         }
-        
-        sender.isHidden = false
     }
     
     @IBAction func sendPosition() {
