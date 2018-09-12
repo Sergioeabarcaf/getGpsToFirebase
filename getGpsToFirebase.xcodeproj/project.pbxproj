@@ -10,7 +10,7 @@
 		0666F94F212466CE00ECCB0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0666F94E212466CD00ECCB0B /* GoogleService-Info.plist */; };
 		06EC9F16211C5C5A00FE4B7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC9F15211C5C5A00FE4B7A /* AppDelegate.swift */; };
 		06EC9F18211C5C5A00FE4B7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC9F17211C5C5A00FE4B7A /* ViewController.swift */; };
-		06EC9F1B211C5C5A00FE4B7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EC9F19211C5C5A00FE4B7A /* Main.storyboard */; };
+		06EC9F1B211C5C5A00FE4B7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EC9F19211C5C5A00FE4B7A /* Main.storyboard */; settings = {ASSET_TAGS = (statusStack, ); }; };
 		06EC9F1D211C5C5C00FE4B7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EC9F1C211C5C5C00FE4B7A /* Assets.xcassets */; };
 		06EC9F20211C5C5C00FE4B7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EC9F1E211C5C5C00FE4B7A /* LaunchScreen.storyboard */; };
 		6E602B656A529A76DB42E51C /* Pods_getGpsToFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC41EB53ED14E8D1956F76 /* Pods_getGpsToFirebase.framework */; };
@@ -119,6 +119,9 @@
 		06EC9F0A211C5C5A00FE4B7A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					statusStack,
+				);
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = sergioeabarcaf;
@@ -186,12 +189,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-getGpsToFirebase/Pods-getGpsToFirebase-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableFirebase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",

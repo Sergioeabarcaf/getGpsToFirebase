@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import FirebaseDatabase
+import CodableFirebase
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
 
@@ -28,7 +29,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     var ref: DatabaseReference!
     var handle: DatabaseHandle!
-    var dispositivosFromFirebase:[Any] = []
+
     var dispositivoLocation:[String:Any] = [
         "latitude":"",
         "longitude":"",
@@ -45,9 +46,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         var nameDevice: String
     }
     
-    struct deviceLocation: Codable {
-        var key: deviceData
-    }
+    var dispositivosFromFirebase:[String:deviceData] = [:]
     
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
@@ -60,9 +59,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
         Database.database().isPersistenceEnabled = true
         ref = Database.database().reference()
         handle = ref?.child("locaciones").observe(.value, with: { (snapshot) in
-            if let item = snapshot.value {
-                self.dispositivosFromFirebase.append(item)
+            guard let item = snapshot.value else { return }
+            do{
+                let auxItem = try FirebaseDecoder().decode([String:deviceData].self, from: item)
+                print(auxItem)
+                self.dispositivosFromFirebase = auxItem
                 self.ref?.keepSynced(true)
+            }
+            catch let error{
+                print("================   \(error)   ==============")
             }
         })
         
@@ -111,7 +116,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     @IBAction func getPosition(_ sender: UIButton) {
         self.countGetsPosition += 1
         
-        print(self.dispositivosFromFirebase.count)
+        for i in self.dispositivosFromFirebase{
+            if i.value.nameDevice == "sillon2"{
+                print(i)
+            }
+        }
         
         if self.bestUserLocation.horizontalAccuracy == 0.0 {
             self.bestUserLocation = self.userLocation

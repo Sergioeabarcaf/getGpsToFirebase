@@ -8,6 +8,6 @@ target 'getGpsToFirebase' do
   # Pods for getGpsToFirebase
   pod 'Firebase/Core'
   pod 'Firebase/Database'
-
+  pod 'CodableFirebase'
 
 end
